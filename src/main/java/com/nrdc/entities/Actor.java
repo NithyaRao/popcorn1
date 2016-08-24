@@ -1,30 +1,26 @@
 package com.nrdc.entities;
 
-import lombok.Data;
+
+import com.nrdc.enums.Gender;
+import com.nrdc.enums.Rating;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "studios")
-@Data
-public class Studio {
+@Table(name = "actors")
+public class Actor {
     private int id;
     private int version;
     private String name;
-    private Date est;
+    private Date birthday;
+    private Gender gender;
     private Date createdAt;
     private Date updatedAt;
 
-    public Studio() {
+    public Actor() {
         this.createdAt = new Date();
         this.updatedAt = new Date();
-    }
-
-    public Studio(int id) {
-        this();
-        this.id = id;
     }
 
     @Id
@@ -53,11 +49,20 @@ public class Studio {
     }
 
     @Temporal(TemporalType.DATE)
-    public Date getEst() {
-        return est;
+    public Date getBirthday() {
+        return birthday;
     }
-    public void setEst(Date est) {
-        this.est = est;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "ENUM('M','F')")
+    public Gender getGender() {
+        return gender;
+    }
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -77,5 +82,6 @@ public class Studio {
     }
 
     @PreUpdate
-    protected void onUpdate() { this.updatedAt = new Date();}
+    protected void onUpdate() { this.updatedAt = new Date(); }
 }
+

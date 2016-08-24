@@ -1,5 +1,7 @@
 package com.nrdc.services;
 
+import com.nrdc.entities.Actor;
+import com.nrdc.entities.Movie;
 import com.nrdc.entities.Studio;
 import com.nrdc.repositories.IStudioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,19 +9,29 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-@Service
 
+@Service
 public class StudioService {
     private IStudioRepository repository;
 
     @Autowired
-    public void setRepository(IStudioRepository repository){
+    public void setRepository(IStudioRepository repository) {
         this.repository = repository;
     }
 
     public Page<Studio> findAll(int page) {
         PageRequest pr = new PageRequest(page, 3);
         return this.repository.findAll(pr);
+    }
+
+    public Page<Movie> findAllMoviesByStudioId(int id, int page) {
+        PageRequest pr = new PageRequest(page, 3);
+        return this.repository.findAllMoviesByStudioId(id, pr);
+    }
+
+    public Page<Actor> findAllActorsByStudioId(int id, int page) {
+        PageRequest pr = new PageRequest(page, 3);
+        return this.repository.findAllActorsByStudioId(id, pr);
     }
 
     public Studio findOne(int id) {

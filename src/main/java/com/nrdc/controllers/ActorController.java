@@ -3,45 +3,45 @@ package com.nrdc.controllers;
 import com.nrdc.entities.Actor;
 import com.nrdc.entities.Movie;
 import com.nrdc.entities.Studio;
-import com.nrdc.services.StudioService;
+import com.nrdc.services.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/studios")
-public class StudioController {
-    private StudioService service;
+@RequestMapping("/actors")
+public class ActorController {
+    private ActorService service;
 
     @Autowired
-    public void setService(StudioService service) {
+    public void setService(ActorService service) {
         this.service = service;
     }
 
     @RequestMapping(path = {"", "/"}, method = RequestMethod.GET)
-    public Page<Studio> index( @RequestParam(name = "page", required = false, defaultValue = "0") int page ) {
+    public Page<Actor> index(@RequestParam(name = "page", required = false, defaultValue = "0") int page ) {
         return this.service.findAll(page);
     }
 
     @RequestMapping(path = {"/{id}/movies"}, method = RequestMethod.GET)
     public Page<Movie> movies(@PathVariable int id, @RequestParam(name = "page", required = false, defaultValue = "0") int page ) {
-        return this.service.findAllMoviesByStudioId(id, page);
+        return this.service.findAllMoviesByActorId(id, page);
     }
 
-    @RequestMapping(path = {"/{id}/actors"}, method = RequestMethod.GET)
-    public Page<Actor> actors(@PathVariable int id, @RequestParam(name = "page", required = false, defaultValue = "0") int page ) {
-        return this.service.findAllActorsByStudioId(id, page);
+    @RequestMapping(path = {"/{id}/studios"}, method = RequestMethod.GET)
+    public Page<Studio> studios(@PathVariable int id, @RequestParam(name = "page", required = false, defaultValue = "0") int page ) {
+        return this.service.findAllStudiosByActorId(id, page);
     }
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET)
-    public Studio show(@PathVariable int id) {
+    public Actor show(@PathVariable int id) {
         return this.service.findOne(id);
     }
 
     @RequestMapping(path = {"", "/"}, method = RequestMethod.POST)
-    public Studio create(@RequestBody Studio studio) {
-        return this.service.create(studio);
+    public Actor create(@RequestBody Actor actor) {
+        return this.service.create(actor);
     }
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE)
@@ -50,7 +50,7 @@ public class StudioController {
     }
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT)
-    public Studio update(@PathVariable int id, @RequestBody Studio studio) {
-        return this.service.update(id, studio);
+    public Actor update(@PathVariable int id, @RequestBody Actor actor) {
+        return this.service.update(id, actor);
     }
 }

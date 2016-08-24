@@ -2,7 +2,7 @@ use popcorn;
 
 set FOREIGN_KEY_CHECKS = 0;
 # truncate table actors;
-# truncate table movies;
+ truncate table movies;
 # truncate table actors_movies;
 truncate table studios;
 set FOREIGN_KEY_CHECKS = 1;
@@ -13,15 +13,15 @@ insert into studios (created_at, est, name, updated_at, version) values ('2016-0
 insert into studios (created_at, est, name, updated_at, version) values ('2016-08-22', '1901-06-14', 'WB', '2016-08-22', 0);
 insert into studios (created_at, est, name, updated_at, version) values ('2016-08-22', '1901-07-15', 'Paramount', '2016-08-22', 0);
 
-# INSERT INTO `popcorn`.`movies` (`version`, `name`, `released`, `created_at`, `updated_at`, `genre`, `rating`, `studio_id`)
-# VALUES
-#   ('0', 'The Matrix', '1999-03-15', '2001-01-11', '2001-01-11', 'scifi', 'r', '1'),
-#   ('0', 'Avatar', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
-#   ('0', 'Star Wars I', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
-#   ('0', 'Harry Potter', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
-#   ('0', 'Lord of the Rings', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
-#   ('0', 'Titantic', '1997-03-15', '2001-01-11', '2001-01-11', 'action', 'pg', '2');
-#
+INSERT INTO `popcorn`.`movies` (`version`, `name`, `released`, `created_at`, `updated_at`, `genre`, `rating`, `studio_id`)
+VALUES
+  ('0', 'The Matrix', '1999-03-15', '2001-01-11', '2001-01-11', 'scifi', 'r', '1'),
+  ('0', 'Avatar', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
+  ('0', 'Star Wars I', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
+  ('0', 'Harry Potter', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
+  ('0', 'Lord of the Rings', '1998-03-15', '2001-01-11', '2001-01-11', 'scifi', 'pg', '2'),
+  ('0', 'Titantic', '1997-03-15', '2001-01-11', '2001-01-11', 'action', 'pg', '2');
+
 # INSERT INTO `popcorn`.`actors` (`version`, `name`, `birthday`, `created_at`, `updated_at`, `gender`)
 # VALUES
 #   ('0', 'Keanu Reeves', '1952-03-15', '2001-01-11', '2001-01-11', 'm'),
